@@ -1,3 +1,6 @@
+// Auth Reducer
+// The Auth reducer will update the isLoggedIn and user state of the application.
+
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -30,19 +33,19 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isLoggedIn: true,
-        user: payload.user,
+        token_id: payload.token_id,
       };
     case LOGIN_FAIL:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        token_id: null,
       };
     case LOGOUT:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        token_id: null,
       };
     default:
       return state;

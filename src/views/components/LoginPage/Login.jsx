@@ -27,16 +27,6 @@ const aol = (value) =>
     ? "Really? You still use AOL for your email?"
     : undefined;
 
-// const required = (value) => {
-//   if (!value) {
-//     return (
-//       <div className="alert alert-danger" role="alert">
-//         This field is required!
-//       </div>
-//     );
-//   }
-// };
-
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
   <div className="form-group inputFieldandLabel">
     <label>{label}</label>
@@ -51,23 +41,6 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
     </div>
   </div>
 );
-
-// const renderField = ({
-//   input,
-//   label,
-//   type,
-//   meta: { touched, error, warning },
-// }) => (
-//   <div>
-//     <label>{label}</label>
-//     <div>
-//       <input {...input} placeholder={label} type={type} />
-//       {touched &&
-//         ((error && <span>{error}</span>) ||
-//           (warning && <span>{warning}</span>))}
-//     </div>
-//   </div>
-// );
 
 const Login = (props) => {
   const { handleSubmit, pristine, reset, submitting, error } = props;
@@ -93,34 +66,12 @@ const Login = (props) => {
     setPassword(password);
   };
 
-  // const handleLogin = (formValues) => {
-  //   const { email, password } = formValues;
-  //   setLoading(true);
-  //   console.log(formValues);
-
-  //   dispatch(login({ email, password }))
-  //     // .unwrap()
-  //     .then(() => {
-  //       navigate("/todo");
-  //       //window.location.reload();
-  //     })
-  //     .catch(() => {
-  //       setLoading(true);
-  //       console.log("Eroare");
-  //     });
-  // };
-
   const handleLogin = () => {
-    //e.preventDefault();
-
     setLoading(true);
-
-    //form.current.validateAll();
 
     dispatch(login(email, password))
       .then(() => {
         navigate("/todo");
-        //window.location.reload();
       })
       .catch(() => {
         setLoading(false);
@@ -157,13 +108,6 @@ const Login = (props) => {
             />
             {error && <strong>{error}</strong>}
             <div className=" gap-2  mx-auto btn-align">
-              {/* <button
-                type="submit"
-                disabled={submitting}
-                className="w-50 btn btn-lg btn-primary"
-              >
-                Submit
-              </button> */}
               <button
                 className="btn btn-primary btn-block w-50"
                 disabled={loading}
@@ -184,12 +128,6 @@ const Login = (props) => {
             </div>
             {message && (
               <div className="form-group">
-                {/* <div
-                  className="alert alert-danger alert-dismissible"
-                  role="alert"
-                >
-                  {message}
-                </div> */}
                 <div
                   className="alert alert-danger alert-dismissible fade show "
                   role="alert"
@@ -214,4 +152,3 @@ const Login = (props) => {
 export default reduxForm({
   form: "fieldLevelValidation", // a unique identifier for this form
 })(Login);
-// export default Login;

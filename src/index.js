@@ -1,3 +1,6 @@
+// Make Redux Store available
+// We will wrap our application with a <Provider> component. It makes the Redux store available to any nested components.
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";

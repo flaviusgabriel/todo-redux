@@ -1,3 +1,10 @@
+// Authentication service
+// The service uses Axios for HTTP requests and Local Storage for user information & JWT.
+// It provides following important functions:
+
+// login(): POST {email, password} & save JWT to Local Storage
+// logout(): remove JWT from Local Storage
+
 import axios from "axios";
 
 const API_URL = "https://api-nodejs-todolist.herokuapp.com/user/";
