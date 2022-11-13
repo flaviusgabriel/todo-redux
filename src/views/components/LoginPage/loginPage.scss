@@ -1,34 +1,55 @@
-
-.btn-align{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
+.btn-align {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
 }
 
-.link-to-register{
-    margin-top: 30px;
+.link-to-register {
+  margin-top: 30px;
 }
 
-.alert{
-    position: absolute;
-    top: 20px;
-    left: 10px;
-    padding: 5px;
+// .alert{
+//     position: absolute;
+//     top: 20px;
+//     left: 10px;
+//     padding: 5px;
+// }
+
+.alert {
+  margin-top: 20px;
 }
 
-.label-field{
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    
-    align-items: center;
+.label-required {
+  color: red;
+  margin-left: 10px;
 }
 
-.ababa{
-    margin: auto;
+.inputFieldandLabel {
+  margin-top: 20px;
+}
+
+.label-field {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.ababa {
+  margin: auto;
   width: 50%;
   border: 3px solid green;
   padding: 10px;
+}
+
+// login container center
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
 }
