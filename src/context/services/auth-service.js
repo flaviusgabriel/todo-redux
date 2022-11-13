@@ -14,14 +14,14 @@ const login = (email, password) => {
       //   }
       console.log(response);
 
-      localStorage.setItem("key", JSON.stringify(response.data.token));
+      localStorage.setItem("token_id", JSON.stringify(response.data.token));
 
       return response.data;
     });
 };
 
 const logout = () => {
-  localStorage.removeItem("key");
+  localStorage.removeItem("token_id");
 };
 
 export default {

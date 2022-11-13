@@ -7,7 +7,7 @@ export const login = (email, password) => (dispatch) => {
     (data) => {
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: { key: data },
+        payload: { token_id: data },
       });
 
       return Promise.resolve();
