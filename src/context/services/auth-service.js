@@ -18,7 +18,17 @@ const logout = () => {
   localStorage.removeItem("token_id");
 };
 
+const register = (age, email, name, password) => {
+  return axios.post(`${API_URL}/user/register`, {
+    name,
+    email,
+    password,
+    age,
+  });
+};
+
 export default {
   login,
   logout,
+  register,
 };

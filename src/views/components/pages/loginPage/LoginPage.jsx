@@ -9,6 +9,7 @@ import "./loginPage.scss";
 
 import { isRequired, isEmail, isAol } from "../../../utils/validations";
 import { Input } from "../../form/Input";
+import { Link } from "react-router-dom";
 
 const LoginPage = (props) => {
   const { handleSubmit, pristine, reset, submitting, error } = props;
@@ -89,6 +90,11 @@ const LoginPage = (props) => {
                 </div>
               </div>
             )}
+            <div className="linkToSignUp">
+              <span>
+                Don't have an account? <Link to="/signup">Sign Up</Link>{" "}
+              </span>
+            </div>
           </form>
         </div>
       </div>
