@@ -1,6 +1,3 @@
-// Message Actions Creator
-// This Redux action creator is for actions related to messages (notifications) from APIs.
-
 import { SET_MESSAGE, CLEAR_MESSAGE } from "./types";
 
 export const setMessage = (message) => ({

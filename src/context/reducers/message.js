@@ -1,6 +1,3 @@
-// Message Reducer
-// This reducer updates message state when message action is dispatched from anywhere in the application.
-
 import { SET_MESSAGE, CLEAR_MESSAGE } from "../actions/types";
 
 const initialState = {};

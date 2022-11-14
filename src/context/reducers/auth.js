@@ -1,6 +1,3 @@
-// Auth Reducer
-// The Auth reducer will update the isLoggedIn and user state of the application.
-
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,

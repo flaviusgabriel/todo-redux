@@ -15,24 +15,12 @@ const LoginPage = (props) => {
 
   let navigate = useNavigate();
 
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
 
   const dispatch = useDispatch();
-
-  // const onChangeEmail = (e) => {
-  //   const email = e.target.value;
-  //   setEmail(email);
-  // };
-
-  // const onChangePassword = (e) => {
-  //   const password = e.target.value;
-  //   setPassword(password);
-  // };
 
   const handleLogin = (formValues) => {
     const { email, password } = formValues;
@@ -64,7 +52,6 @@ const LoginPage = (props) => {
               label="Email"
               validate={(isEmail, isRequired)}
               warn={isAol}
-              // onChange={onChangeEmail}
             />
 
             <Field
@@ -72,7 +59,6 @@ const LoginPage = (props) => {
               type="password"
               component={Input}
               label="Password"
-              // onChange={onChangePassword}
               validate={isRequired}
             />
             {error && <strong>{error}</strong>}
