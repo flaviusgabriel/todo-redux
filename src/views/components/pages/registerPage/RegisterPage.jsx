@@ -17,6 +17,7 @@ import { Input } from "../../form/Input";
 import { Link } from "react-router-dom";
 
 import { register } from "../../../../context/actions/auth";
+import { setMessage } from "../../../../context/actions/message";
 
 const RegisterPage = (props) => {
   const { handleSubmit, pristine, reset, submitting, error } = props;
@@ -36,6 +37,7 @@ const RegisterPage = (props) => {
     dispatch(register(age, email, name, password))
       .then(() => {
         setSuccessful(true);
+        dispatch(setMessage("E OK, Traiasca comunissmul boss!"));
       })
       .catch(() => {
         setSuccessful(false);
@@ -108,7 +110,7 @@ const RegisterPage = (props) => {
               </span>
             </div>
 
-            {message && (
+            {successful && (
               <div className="form-group">
                 <div
                   className={

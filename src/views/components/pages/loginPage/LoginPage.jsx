@@ -23,6 +23,8 @@ const LoginPage = (props) => {
 
   const dispatch = useDispatch();
 
+  const [fail, setFail] = useState(false);
+
   const handleLogin = (formValues) => {
     const { email, password } = formValues;
     setLoading(true);
@@ -33,6 +35,10 @@ const LoginPage = (props) => {
       })
       .catch(() => {
         setLoading(false);
+        setFail(true);
+        setTimeout(() => {
+          setFail(false);
+        }, 3000);
       });
   };
 
@@ -74,7 +80,7 @@ const LoginPage = (props) => {
                 <span>Login</span>
               </button>
             </div>
-            {message && (
+            {fail && (
               <div className="form-group">
                 <div
                   className="alert alert-danger alert-dismissible fade show "
