@@ -8,11 +8,9 @@
 import axios from "axios";
 import { API_URL } from "../../views/constants/constants";
 
-//const API_URL = "https://api-nodejs-todolist.herokuapp.com/user/";
-
 const login = (email, password) => {
   return axios
-    .post(`${API_URL}user/login`, {
+    .post(`${API_URL}/user/login`, {
       email,
       password,
     })

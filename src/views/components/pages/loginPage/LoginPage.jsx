@@ -1,22 +1,22 @@
 import { useState, useRef } from "react";
-import { Field, reduxForm, submit } from "redux-form";
+import { Field, formValues, reduxForm, submit } from "redux-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 
-import { login } from "../../../context/actions/auth";
+import { login } from "../../../../context/actions/auth";
 
 import "./loginPage.scss";
 
-import { required, email, aol } from "../../utils/validations";
-import { renderInput } from "../../Form/input";
+import { isRequired, isEmail, isAol } from "../../../utils/validations";
+import { Input } from "../../form/Input";
 
-const Login = (props) => {
+const LoginPage = (props) => {
   const { handleSubmit, pristine, reset, submitting, error } = props;
 
   let navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -24,17 +24,18 @@ const Login = (props) => {
 
   const dispatch = useDispatch();
 
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
+  // const onChangeEmail = (e) => {
+  //   const email = e.target.value;
+  //   setEmail(email);
+  // };
 
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
+  // const onChangePassword = (e) => {
+  //   const password = e.target.value;
+  //   setPassword(password);
+  // };
 
-  const handleLogin = () => {
+  const handleLogin = (formValues) => {
+    const { email, password } = formValues;
     setLoading(true);
 
     dispatch(login(email, password))
@@ -59,20 +60,20 @@ const Login = (props) => {
             <Field
               name="email"
               type="email"
-              component={renderInput}
+              component={Input}
               label="Email"
-              validate={(email, required)}
-              warn={aol}
-              onChange={onChangeEmail}
+              validate={(isEmail, isRequired)}
+              warn={isAol}
+              // onChange={onChangeEmail}
             />
 
             <Field
               name="password"
               type="password"
-              component={renderInput}
+              component={Input}
               label="Password"
-              onChange={onChangePassword}
-              validate={required}
+              // onChange={onChangePassword}
+              validate={isRequired}
             />
             {error && <strong>{error}</strong>}
             <div className=" gap-2  mx-auto btn-align">
@@ -111,4 +112,4 @@ const Login = (props) => {
 
 export default reduxForm({
   form: "fieldLevelValidation", // a unique identifier for this form
-})(Login);
+})(LoginPage);

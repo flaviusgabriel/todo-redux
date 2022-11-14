@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.scss";
-import Login from "./views/Pages/LoginPage/Login";
-import ToDoPAge from "./views/Pages/ToDoPage/ToDoPage";
+import Login from "./views/components/pages/loginPage/LoginPage";
+import ToDoPAge from "./views/components/pages/toDoPage/ToDoPage";
 
 function App() {
   return (

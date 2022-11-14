@@ -1,9 +1,4 @@
-export const renderInput = ({
-  input,
-  label,
-  type,
-  meta: { touched, error },
-}) => (
+export const Input = ({ input, label, type, meta: { touched, error } }) => (
   <div className="form-group inputFieldandLabel">
     <label>{label}</label>
     <div className="d-flex justify-content-center input-label-required">

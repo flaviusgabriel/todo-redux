@@ -1,1 +1,1 @@
-export const API_URL = `https://api-nodejs-todolist.herokuapp.com/`;
+export const API_URL = `https://api-nodejs-todolist.herokuapp.com`;
