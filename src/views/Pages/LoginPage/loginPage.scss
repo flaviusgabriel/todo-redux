@@ -21,9 +21,21 @@
   margin-top: 20px;
 }
 
+// .input-require{
+//   display: inline-block;
+//   width: 6em;
+//   margin-right: .5em;
+//   padding-top: 1.5em;
+// }
+
 .label-required {
   color: red;
   margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
 }
 
 .inputFieldandLabel {
@@ -35,6 +47,13 @@
   display: flex;
   flex-direction: column;
 
+  align-items: center;
+  
+}
+
+.input-label-required{
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -53,3 +72,4 @@
   transform: translate(-50%, -50%);
   width: 80%;
 }
+
