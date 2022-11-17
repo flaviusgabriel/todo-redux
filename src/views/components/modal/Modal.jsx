@@ -19,7 +19,7 @@ const Modal = () => {
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
       >
-        Launch static backdrop modal
+        Edit Profile
       </button>
 
       <div
