@@ -6,8 +6,6 @@ import Modal from "../../modal/Modal";
 const ProfilePage = () => {
   const { store } = useContext(ReactReduxContext);
 
-  console.log(store.getState().userDetails);
-
   const getUserDetails = store.getState().userDetails;
 
   return (
