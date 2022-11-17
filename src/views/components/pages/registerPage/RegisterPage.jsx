@@ -1,9 +1,9 @@
 import "./registerPage.scss";
 
-import { useState, useRef } from "react";
-import { Field, formValues, reduxForm, submit } from "redux-form";
+import { useState } from "react";
+import { Field, reduxForm } from "redux-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   isRequired,
@@ -17,30 +17,60 @@ import { Input } from "../../form/Input";
 import { Link } from "react-router-dom";
 
 import { register } from "../../../../context/actions/auth";
-import { setMessage } from "../../../../context/actions/message";
+import { setMessage, clearMessage } from "../../../../context/actions/message";
+import AlertMessage from "../../form/AlertMessage";
+import { type } from "../../form/alert.types";
+import { useEffect } from "react";
 
 const RegisterPage = (props) => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const { message } = useSelector((state) => state.message);
+
   const { handleSubmit, pristine, reset, submitting, error } = props;
 
   const [successful, setSuccessful] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
-  const { message } = useSelector((state) => state.message);
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (message !== undefined) {
+      setTimeout(() => {
+        dispatch(clearMessage());
+      }, 6000);
+    }
+  }, [message]);
 
   const handleRegister = (formValues) => {
     const { age, email, name, password } = formValues;
 
     setSuccessful(false);
 
+    setLoading(true);
+
     dispatch(register(age, email, name, password))
       .then(() => {
         setSuccessful(true);
-        dispatch(setMessage("E OK, Traiasca comunissmul boss!"));
+        dispatch(
+          setMessage({
+            message: "Thanks for signing up!",
+            type: type.successfull,
+          })
+        );
+
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+
+        setTimeout(() => {
+          dispatch(clearMessage());
+        }, 6000);
       })
       .catch(() => {
         setSuccessful(false);
+        setLoading(false);
       });
   };
   return (
@@ -106,7 +136,7 @@ const RegisterPage = (props) => {
 
             <div className="linkToSignIn">
               <span>
-                Already have an account? <Link to="/login">Sign In</Link>{" "}
+                Already have an account? <Link to="/">Sign In</Link>{" "}
               </span>
             </div>
 

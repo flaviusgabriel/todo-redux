@@ -9,13 +9,19 @@ import {
 
 import AuthService from "../services/auth-service";
 
+import { type } from "../../views/components/form/alert.types";
+
+import { addUserDetails } from "./userDetailsAction";
+
 export const login = (email, password) => (dispatch) => {
   return AuthService.login(email, password).then(
-    (data) => {
+    (response) => {
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: { token_id: data },
+        payload: { token_id: response.data.token_id },
       });
+
+      addUserDetails(response.data.user);
 
       return Promise.resolve();
     },
@@ -33,7 +39,7 @@ export const login = (email, password) => (dispatch) => {
 
       dispatch({
         type: SET_MESSAGE,
-        payload: message,
+        payload: { message: message, type: type.danger },
       });
 
       return Promise.reject();
@@ -58,7 +64,7 @@ export const register = (age, email, name, password) => (dispatch) => {
 
       dispatch({
         type: SET_MESSAGE,
-        payload: response.data.message,
+        payload: { message: response.data.message, type: type.successfull },
       });
 
       return Promise.resolve();
@@ -77,7 +83,7 @@ export const register = (age, email, name, password) => (dispatch) => {
 
       dispatch({
         type: SET_MESSAGE,
-        payload: message,
+        payload: { message: message, type: type.danger },
       });
 
       return Promise.reject();

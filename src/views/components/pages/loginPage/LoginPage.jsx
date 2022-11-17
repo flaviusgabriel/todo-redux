@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { Field, formValues, reduxForm, submit } from "redux-form";
+import { useState } from "react";
+import { Field, reduxForm } from "redux-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -11,19 +11,21 @@ import { isRequired, isEmail, isAol } from "../../../utils/validations";
 import { Input } from "../../form/Input";
 import { Link } from "react-router-dom";
 
-const LoginPage = (props) => {
-  const { handleSubmit, pristine, reset, submitting, error } = props;
+import { clearMessage } from "../../../../context/actions/message";
 
-  let navigate = useNavigate();
+//import { type as typeValue } from "../../form/alert.types";
+
+const LoginPage = (props) => {
+  const { handleSubmit, error } = props;
 
   const [loading, setLoading] = useState(false);
 
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const { message } = useSelector((state) => state.message);
+  const { message, type } = useSelector((state) => state.message);
 
   const dispatch = useDispatch();
 
-  const [fail, setFail] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = (formValues) => {
     const { email, password } = formValues;
@@ -31,20 +33,20 @@ const LoginPage = (props) => {
 
     dispatch(login(email, password))
       .then(() => {
-        navigate("/todo");
+        window.location.reload();
       })
       .catch(() => {
         setLoading(false);
-        setFail(true);
+
         setTimeout(() => {
-          setFail(false);
+          dispatch(clearMessage());
         }, 3000);
       });
   };
 
-  if (isLoggedIn) {
-    return <Navigate to="/todo" />;
-  }
+  const loginNav = () => {
+    navigate("/");
+  };
 
   return (
     <div className="text-center centered">
@@ -73,6 +75,7 @@ const LoginPage = (props) => {
               <button
                 className="btn btn-primary btn-block w-50"
                 disabled={loading}
+                onClick={loginNav}
               >
                 {loading && (
                   <span className="spinner-border spinner-border-sm"></span>
@@ -80,22 +83,7 @@ const LoginPage = (props) => {
                 <span>Login</span>
               </button>
             </div>
-            {fail && (
-              <div className="form-group">
-                <div
-                  className="alert alert-danger alert-dismissible fade show "
-                  role="alert"
-                >
-                  {message}
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="alert"
-                    aria-label="Close"
-                  ></button>
-                </div>
-              </div>
-            )}
+
             <div className="linkToSignUp">
               <span>
                 Don't have an account? <Link to="/signup">Sign Up</Link>{" "}

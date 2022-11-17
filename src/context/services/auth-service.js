@@ -10,12 +10,15 @@ const login = (email, password) => {
     .then((response) => {
       localStorage.setItem("token_id", JSON.stringify(response.data.token));
 
-      return response.data;
+      localStorage.setItem("user_details", JSON.stringify(response.data.user));
+
+      return response;
     });
 };
 
 const logout = () => {
   localStorage.removeItem("token_id");
+  localStorage.removeItem("user_details");
 };
 
 const register = (age, email, name, password) => {

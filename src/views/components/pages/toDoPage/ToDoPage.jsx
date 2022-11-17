@@ -6,15 +6,9 @@ import { logout } from "../../../../context/actions/auth";
 const ToDoPAge = () => {
   const dispatch = useDispatch();
 
-  const logOut = useCallback(() => {
-    dispatch(logout());
-  }, [dispatch]);
   return (
     <div>
       <h1>TODO Page</h1>
-      <a href="/login" className="nav-link" onClick={logOut}>
-        LogOut
-      </a>
     </div>
   );
 };
