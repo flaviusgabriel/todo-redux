@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { useSelector, ReactReduxContext } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { ReactReduxContext } from "react-redux";
 import { useContext } from "react";
-import updateUserDetails from "../../../context/services/user-service";
-import { number } from "yup";
 import { useDispatch } from "react-redux";
-import { updateUserDetails as actionUpdateUserDetails } from "../../../context/actions/userDetailsAction";
-import { useEffect } from "react";
-import { reGetUserDetails } from "../../../context/services/user-service";
 
-const Modal = () => {
+import updateUserDetails from "../../../../../context/services/user-service";
+import { updateUserDetails as actionUpdateUserDetails } from "../../../../../context/actions/userDetailsAction";
+import { reGetUserDetails } from "../../../../../context/services/user-service";
+
+const EditProfileModal = () => {
   const dispatch = useDispatch();
 
   const { store } = useContext(ReactReduxContext);
@@ -19,11 +17,14 @@ const Modal = () => {
   const [email, setEmail] = useState(getUserDetails.email);
   const [age, setAge] = useState(getUserDetails.age);
 
+  const [close, setClose] = useState(false);
+
   const upddateUserProfile = () => {
     updateUserDetails({ age: Number(age), name, email })
       .then((response) => {
         reGetUserDetails().then((response) => {
           console.log(response);
+          setClose(true);
         });
         console.log(response);
         dispatch(actionUpdateUserDetails({ email, name, age }));
@@ -106,6 +107,7 @@ const Modal = () => {
 
                 <button
                   className="btn btn-primary"
+                  data-bs-dismiss={close && "modal"}
                   onClick={(e) => {
                     e.preventDefault();
                     upddateUserProfile();
@@ -122,4 +124,4 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+export default EditProfileModal;

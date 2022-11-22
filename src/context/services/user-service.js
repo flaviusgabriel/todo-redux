@@ -3,8 +3,18 @@ import authHeader from "./auth-header";
 
 import { API_URL } from "../../views/constants/constants";
 
-const getUserDetails = () => {
-  return axios.get(API_URL, { headers: authHeader() });
+axios.defaults.headers.common["Authorization"] = `Bearer ${JSON.parse(
+  localStorage.getItem("token_id")
+)}`;
+
+const updateUserDetails = (object) => {
+  return axios.put(`${API_URL}/user/me`, {
+    ...object, // This is the body part
+  }); // seteaza header cu authHeader => setez autch cu bearer token
 };
 
-export default getUserDetails;
+export const reGetUserDetails = () => {
+  return axios.get(`${API_URL}/user/me`);
+};
+
+export default updateUserDetails;

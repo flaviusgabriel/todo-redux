@@ -22,11 +22,31 @@
 
 .profilepic {
     position: relative;
-    width: 125px;
-    height: 125px;
-    border-radius: 50%;
+    width: 145px;
+    height: 145px;
+     border-radius: 50%;
     overflow: hidden;
-    background-color: #111;
+    background-color: #e9ecef;
+    margin-top: 60px;
+    margin-left: 40px;
+  }
+
+  img {
+    color: green;
+    line-height: 50px;
+    text-align: center;
+  }
+
+  .profilepic__icon > ion-icon{
+    cursor: pointer;
+    font-size: 25px;
+  }
+
+  .center-items{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
   
   .profilepic:hover .profilepic__content {
@@ -61,6 +81,11 @@
   .profilepic__icon {
     color: white;
     padding-bottom: 8px;
+    margin-right: 5px;
+  }
+
+  .profilepic__icon:hover{
+    color: #ffba08;
   }
   
   .fas {
